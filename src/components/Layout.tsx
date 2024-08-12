@@ -5,7 +5,7 @@ const Layout = ({ children }: any) => {
   return (
     <div className='flex'>
         <Sidebar/>
-        <div>
+        <div className='w-4/5'>
             {children}
         </div>
     </div>
