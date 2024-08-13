@@ -10,16 +10,11 @@ import {
   CategoryScale,
   LinearScale,
   PointElement,
-  plugins,
-  scales,
 } from "chart.js";
 import { MoonLoader } from "react-spinners";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
-const worldWideDataOfCases = async () => {
-  return await axios.get("https://disease.sh/v3/covid-19/all");
-};
 
 const countrySpecificCases = async () => {
   return await axios.get("https://disease.sh/v3/covid-19/countries");
