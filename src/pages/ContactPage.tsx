@@ -17,7 +17,12 @@ const ContactPage = () => {
     <div className="px-32">
       <div className="flex justify-center mt-10">
         <button
-          onClick={() => setOpenForm((prev) => !prev)}
+          onClick={() => {
+            setOpenForm((prev) => !prev)
+            if(formType === 'edit') {
+              setFormType("new")
+            }
+          }}
           className={`${
             !openForm ? "bg-green-300" : "bg-red-300"
           } border px-7 py-2 text-white rounded-xl font-roboto`}
@@ -52,7 +57,7 @@ const ContactPage = () => {
             No Contact Found. Please add contact from Create Contact Button
           </div>
         ) : (
-          <div className="mt-12">
+          <div className="mt-12 grid lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1">
             {contacts.map((contact: Contact) => (
               <ContactCard
                 key={contact.id}

@@ -7,7 +7,7 @@ const Sidebar = () => {
   const location = useLocation();
 
   return (
-    <div className="w-1/5 px-5 py-20 bg-gray-100 h-screen flex flex-col gap-y-20">
+    <div className="w-1/5 px-5 py-20 bg-gray-100 h-screen flex flex-col gap-y-20 sticky top-0">
       <Link
         to="/"
         className={`${

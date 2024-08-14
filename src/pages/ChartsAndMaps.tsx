@@ -15,7 +15,6 @@ import { MoonLoader } from "react-spinners";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
-
 const countrySpecificCases = async () => {
   return await axios.get("https://disease.sh/v3/covid-19/countries");
 };
@@ -27,7 +26,6 @@ const graphDataForCases = async () => {
 };
 
 const ChartsAndMaps = () => {
-
   const { isLoading: isCountryLoading, data: countryData } = useQuery({
     queryKey: ["country-specific-cases"],
     queryFn: countrySpecificCases,
@@ -51,39 +49,45 @@ const ChartsAndMaps = () => {
     });
 
     return (
-      <MapContainer
-        center={[20, 77]}
-        zoom={3}
-        style={{ height: "100vh", width: "100%" }}
-      >
-        <TileLayer
-          noWrap={true}
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
-        {countryWideCases.map((country: any, index: number) => (
-          <CircleMarker
-            key={index}
-            center={[country.lat, country.lon]}
-            radius={10}
-            color="blue"
-            fillColor="blue"
-            fillOpacity={0.5}
-          >
-            <Popup>
-              <div>
-                <strong>{country.country}</strong>
-                <br />
-                Active: {country.active}
-                <br />
-                Recovered: {country.recovered}
-                <br />
-                Deaths: {country.deaths}
-              </div>
-            </Popup>
-          </CircleMarker>
-        ))}
-      </MapContainer>
+      <div className="flex flex-col gap-y-5">
+        <h1 className="text-3xl font-bold p-5">
+          A map that reflects the data of every country about the cases.
+        </h1>
+
+        <MapContainer
+          center={[20, 77]}
+          zoom={3}
+          style={{ height: "100vh", width: "100%" }}
+        >
+          <TileLayer
+            noWrap={true}
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          />
+          {countryWideCases.map((country: any, index: number) => (
+            <CircleMarker
+              key={index}
+              center={[country.lat, country.lon]}
+              radius={10}
+              color="blue"
+              fillColor="blue"
+              fillOpacity={0.5}
+            >
+              <Popup>
+                <div>
+                  <strong>{country.country}</strong>
+                  <br />
+                  Active: {country.active}
+                  <br />
+                  Recovered: {country.recovered}
+                  <br />
+                  Deaths: {country.deaths}
+                </div>
+              </Popup>
+            </CircleMarker>
+          ))}
+        </MapContainer>
+      </div>
     );
   };
 
@@ -106,11 +110,18 @@ const ChartsAndMaps = () => {
       ],
     };
 
-    return <Line data={finalData}></Line>;
+    return (
+      <div className="flex flex-col gap-y-5">
+        <h1 className="text-3xl font-bold p-5">
+          A line graph for the data of the cases with dates
+        </h1>
+        <Line data={finalData}></Line>
+      </div>
+    );
   };
 
   return (
-    <div className="flex flex-col gap-y-10">
+    <div className="flex flex-col gap-y-44">
       <div>
         {isGraphDataLoading ? (
           <div className="flex justify-center">
