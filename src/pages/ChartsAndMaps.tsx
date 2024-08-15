@@ -12,21 +12,28 @@ import {
   PointElement,
 } from "chart.js";
 import { MoonLoader } from "react-spinners";
+import { CountrySpecificData } from "../types/chartsAndMapsTypes";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
 const countrySpecificCases = async () => {
-  return await axios.get("https://disease.sh/v3/covid-19/countries");
+  const response = await axios.get("https://disease.sh/v3/covid-19/countries");
+  return response.data;
 };
 
 const graphDataForCases = async () => {
-  return await axios.get(
+ return await axios.get(
     "https://disease.sh/v3/covid-19/historical/all?lastdays=all"
   );
 };
 
+type CountryDataProps = {
+  isLoading: boolean;
+  data: CountrySpecificData[]
+}
+
 const ChartsAndMaps = () => {
-  const { isLoading: isCountryLoading, data: countryData } = useQuery({
+  const { isLoading: isCountryLoading, data: countryData }: Partial<CountryDataProps> = useQuery({
     queryKey: ["country-specific-cases"],
     queryFn: countrySpecificCases,
   });
@@ -35,9 +42,10 @@ const ChartsAndMaps = () => {
     queryKey: ["graph-data-for-cases"],
     queryFn: graphDataForCases,
   });
+  
 
   const getTheCountryWiseData = () => {
-    const countryWideCases = countryData?.data.map((obj: any) => {
+    const countryWideCases = countryData?.map((obj: any) => {
       return {
         country: obj.country,
         active: obj.active,
@@ -64,7 +72,7 @@ const ChartsAndMaps = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          {countryWideCases.map((country: any, index: number) => (
+          {countryWideCases?.map((country: any, index: number) => (
             <CircleMarker
               key={index}
               center={[country.lat, country.lon]}
@@ -121,7 +129,7 @@ const ChartsAndMaps = () => {
   };
 
   return (
-    <div className="flex flex-col gap-y-44">
+    <div className="flex flex-col gap-y-44 mt-12">
       <div>
         {isGraphDataLoading ? (
           <div className="flex justify-center">

@@ -57,7 +57,7 @@ const ContactPage = () => {
             No Contact Found. Please add contact from Create Contact Button
           </div>
         ) : (
-          <div className="mt-12 grid lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1">
+          <div className="mt-12 grid lg:grid-cols-3 xs:grid-cols-1 gap-x-44">
             {contacts.map((contact: Contact) => (
               <ContactCard
                 key={contact.id}

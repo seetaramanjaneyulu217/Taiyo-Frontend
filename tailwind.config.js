@@ -5,10 +5,11 @@ module.exports = {
   ],
   theme: {
     screens: {
-      'xs': '100px',
-      'sm': '350px',
-      'md': '640px',
-      'lg': '850px',
+      'xs': '320px',  // Small mobile
+      'sm': '640px',  // Large mobile
+      'md': '768px',  // Tablet
+      'lg': '1024px', // Small laptop
+      'xl': '1280px', // Large laptop
     },
     extend: {
       fontFamily: {

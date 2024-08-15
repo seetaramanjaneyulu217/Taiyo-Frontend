@@ -31,14 +31,14 @@ const ContactCard = ({
     toast.success("Contact deleted successfully");
   };
   return (
-    <div className="p-5">
+    <div className="p-5 min-w-[300px] md:w-3/4 lg:w-1/2 mx-auto">
       <div className="border bg-gray-100 border-gray-100 p-5 rounded-lg flex flex-col justify-center items-center w-full">
         {revealDetails ? (
           <>
             <div className="font-medium w-full">
               <p className="text-lg">Firstname: </p>
               <span
-                className="break-words overflow-hidden text-ellipsis"
+                className="break-words overflow-hidden w-full"
                 style={{ fontStyle: "italic" }}
               >
                 {contact.firstName}
@@ -47,7 +47,7 @@ const ContactCard = ({
             <div className="font-medium w-full mt-2">
               <p className="text-lg">Lastname: </p>
               <span
-                className="break-words overflow-hidden text-ellipsis"
+                className="break-words overflow-hidden w-full"
                 style={{ fontStyle: "italic" }}
               >
                 {contact.lastName}
@@ -56,7 +56,7 @@ const ContactCard = ({
             <div className="font-medium w-full mt-2">
               <p className="text-lg">Status: </p>
               <span
-                className="break-words overflow-hidden text-ellipsis"
+                className="break-words overflow-hidden w-full"
                 style={{ fontStyle: "italic" }}
               >
                 {contact.status}
@@ -73,16 +73,16 @@ const ContactCard = ({
         )}
       </div>
 
-      <div className="flex justify-between mt-2 w-full">
+      <div className="flex flex-col lg:flex-row justify-between mt-2 w-full">
         <button
           onClick={() => handleEditContact(contact)}
-          className="bg-blue-300 border px-7 py-2 text-white rounded-xl font-roboto"
+          className="bg-blue-300 border px-7 py-2 text-white rounded-xl font-roboto text-center"
         >
           Edit
         </button>
         <button
           onClick={() => handleDeleteContact(contact.id)}
-          className="bg-red-300 border px-7 py-2 text-white rounded-xl font-roboto"
+          className="bg-red-300 border px-7 py-2 text-white rounded-xl font-roboto text-center"
         >
           Delete
         </button>
