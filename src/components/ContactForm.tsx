@@ -65,7 +65,9 @@ const ContactForm = ({
     setFormType("new");
     toast.success("Contact edited successfully");
   };
+
   return (
+    // This is a contact form for both creating new contact and also edit the existing contact.
     <div className="flex justify-center mt-12">
       <form
         className="flex flex-col gap-y-4"

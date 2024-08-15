@@ -31,6 +31,7 @@ const ContactCard = ({
     toast.success("Contact deleted successfully");
   };
   return (
+    // this is a contact card which renders for every contact data.
     <div className="p-5 min-w-[300px] md:w-3/4 lg:w-1/2 mx-auto">
       <div className="border bg-gray-100 border-gray-100 p-5 rounded-lg flex flex-col justify-center items-center w-full">
         {revealDetails ? (

@@ -43,6 +43,7 @@ const ContactPage = () => {
         </button>
       </div>
 
+      {/* for displaying contact form. */}
       {openForm && (
         <ContactForm
           formType={formType}
@@ -51,6 +52,7 @@ const ContactPage = () => {
         />
       )}
 
+      {/* for displaying all contacts */}
       <div>
         {contacts.length === 0 ? (
           <div className="flex justify-center text-2xl font-semibold font-roboto lg:max-w-96 lg:mx-auto mt-12">

@@ -33,11 +33,14 @@ type CountryDataProps = {
 }
 
 const ChartsAndMaps = () => {
+
+  // will get the data of the country specific cases data.
   const { isLoading: isCountryLoading, data: countryData }: Partial<CountryDataProps> = useQuery({
     queryKey: ["country-specific-cases"],
     queryFn: countrySpecificCases,
   });
 
+  // will get the data of the worldwide cases data for past 3 years.
   const { isLoading: isGraphDataLoading, data: graphData } = useQuery({
     queryKey: ["graph-data-for-cases"],
     queryFn: graphDataForCases,
@@ -128,6 +131,8 @@ const ChartsAndMaps = () => {
     );
   };
 
+
+  // Component for rendering charts and map.
   return (
     <div className="flex flex-col gap-y-44 mt-12">
       <div>
